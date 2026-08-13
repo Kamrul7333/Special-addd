@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Premium Channel Access</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f051d;
+            --card-bg: rgba(25, 10, 40, 0.85);
+            --pink-main: #ff2a85;
+            --pink-glow: #ff73b3;
+            --accent-success: #22c55e;
+            --text-main: #ffffff;
+            --text-muted: #d8b4fe;
+            --border-color: #4a154b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 20% 20%, rgba(255, 42, 133, 0.25) 0px, transparent 50%),
+                radial-gradient(at 80% 80%, rgba(147, 51, 234, 0.2) 0px, transparent 50%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 25px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+            text-shadow: 0 0 10px var(--pink-main), 0 0 20px var(--pink-main);
+        }
+
+        .header p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .box-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* RGB Border Glow Effect Keyframes */
+        @keyframes rgbGlow {
+            0% { border-color: #ff007f; box-shadow: 0 0 12px #ff007f; }
+            33% { border-color: #9d00ff; box-shadow: 0 0 12px #9d00ff; }
+            66% { border-color: #00f0ff; box-shadow: 0 0 12px #00f0ff; }
+            100% { border-color: #ff007f; box-shadow: 0 0 12px #ff007f; }
+        }
+
+        .box-item {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .box-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .box-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .box-text h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .box-text p {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .btn-action {
+            background: linear-gradient(135deg, #ff2a85, #ff73b3);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 85px;
+            box-shadow: 0 0 10px rgba(255, 42, 133, 0.4);
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        /* Active RGB Box */
+        .box-item.active {
+            animation: rgbGlow 3s infinite linear;
+            background: rgba(255, 42, 133, 0.08);
+        }
+
+        .box-item.active .box-icon {
+            color: var(--pink-main);
+            background: rgba(255, 42, 133, 0.15);
+        }
+
+        /* Completed Box */
+        .box-item.completed {
+            border-color: var(--accent-success);
+            background: rgba(34, 197, 94, 0.08);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+        }
+
+        .box-item.completed .box-icon {
+            color: var(--accent-success);
+            background: rgba(34, 197, 94, 0.15);
+        }
+
+        .completed-badge {
+            color: var(--accent-success);
+            font-size: 20px;
+        }
+
+        /* Locked Box */
+        .box-item.locked {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .btn-action:disabled {
+            background: #2a1535;
+            box-shadow: none;
+            cursor: not-allowed;
+            color: #7e5a8a;
+        }
+
+        /* Final Telegram Box */
+        .telegram-box {
+            background: rgba(40, 167, 233, 0.08);
+            border: 1px dashed #28a7e9;
+        }
+
+        .telegram-box.unlocked {
+            animation: rgbGlow 2s infinite linear;
+            background: rgba(40, 167, 233, 0.15);
+        }
+
+        .telegram-box .box-icon {
+            color: #28a7e9;
+            background: rgba(40, 167, 233, 0.2);
+        }
+
+        .btn-telegram {
+            background: linear-gradient(135deg, #0088cc, #28a7e9);
+            box-shadow: 0 0 15px rgba(40, 167, 233, 0.5);
+        }
+
+        /* Status Alert */
+        .status-alert {
+            display: none;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid #ef4444;
+            color: #ff8e8e;
+            font-size: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1><i class="fa-solid fa-crown" style="color: #ff2a85;"></i> প্রিমিয়াম চ্যানেল ফ্রিতে পেতে পাঁচটি এড সম্পন্ন করুন</h1>
+        <p>প্রতিটি বক্সে ১০ সেকেন্ড অ্যাড সম্পূর্ণ দেখলে পরবর্তী বক্স খুলবে।</p>
+    </div>
+
+    <div id="statusAlert" class="status-alert">
+        <i class="fa-solid fa-triangle-exclamation"></i> আপনি অন্য ট্যাবে চলে গিয়েছিলেন! টাইমার রিসেট করা হয়েছে।
+    </div>
+
+    <div class="box-list">
+        <!-- Step 1 -->
+        <div class="box-item active" id="box-0">
+            <div class="box-info">
+                <div class="box-icon" id="icon-0"><i class="fa-solid fa-lock-open"></i></div>
+                <div class="box-text">
+                    <h3>ধাপ ১</h3>
+                    <p id="sub-0">১০ সেকেন্ড সময় দিন</p>
+                </div>
+            </div>
+            <button class="btn-action" id="btn-0" onclick="startTask(0)">দেখুন</button>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="box-item locked" id="box-1">
+            <div class="box-info">
+                <div class="box-icon" id="icon-1"><i class="fa-solid fa-lock"></i></div>
+                <div class="box-text">
+                    <h3>ধাপ ২</h3>
+                    <p id="sub-1">লক করা আছে</p>
+                </div>
+            </div>
+            <button class="btn-action" id="btn-1" onclick="startTask(1)" disabled>দেখুন</button>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="box-item locked" id="box-2">
+            <div class="box-info">
+                <div class="box-icon" id="icon-2"><i class="fa-solid fa-lock"></i></div>
+                <div class="box-text">
+                    <h3>ধাপ ৩</h3>
+                    <p id="sub-2">লক করা আছে</p>
+                </div>
+            </div>
+            <button class="btn-action" id="btn-2" onclick="startTask(2)" disabled>দেখুন</button>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="box-item locked" id="box-3">
+            <div class="box-info">
+                <div class="box-icon" id="icon-3"><i class="fa-solid fa-lock"></i></div>
+                <div class="box-text">
+                    <h3>ধাপ ৪</h3>
+                    <p id="sub-3">লক করা আছে</p>
+                </div>
+            </div>
+            <button class="btn-action" id="btn-3" onclick="startTask(3)" disabled>দেখুন</button>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="box-item locked" id="box-4">
+            <div class="box-info">
+                <div class="box-icon" id="icon-4"><i class="fa-solid fa-lock"></i></div>
+                <div class="box-text">
+                    <h3>ধাপ ৫</h3>
+                    <p id="sub-4">লক করা আছে</p>
+                </div>
+            </div>
+            <button class="btn-action" id="btn-4" onclick="startTask(4)" disabled>দেখুন</button>
+        </div>
+
+        <!-- Final Step 6: Special Telegram Video Channel -->
+        <div class="box-item telegram-box locked" id="box-5">
+            <div class="box-info">
+                <div class="box-icon" id="icon-5"><i class="fa-brands fa-telegram"></i></div>
+                <div class="box-text">
+                    <h3>স্পেশাল টেলিগ্রাম ভিডিও চ্যানেল</h3>
+                    <p id="sub-5">উপরের ৫টি ধাপ সম্পন্ন করুন</p>
+                </div>
+            </div>
+            <a href="https://t.me/+Rt3q6Wr9NkVmZGY6" target="_blank" class="btn-action btn-telegram" id="btn-5" style="display:none;">
+                Join Chat
+            </a>
+            <button class="btn-action" id="btn-5-dummy" disabled>লক</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Configured Ad Links
+    const adLinks = [
+        "https://omg10.com/4/11144021",
+        "https://omg10.com/4/11570596",
+        "https://omg10.com/4/11570592",
+        "https://omg10.com/4/11144021",
+        "https://omg10.com/4/11570596"
+    ];
+
+    const TIMER_DURATION = 10;
+    let currentTask = null;
+    let timerInterval = null;
+    let timeLeft = TIMER_DURATION;
+    let completedTasks = [false, false, false, false, false];
+
+    function startTask(index) {
+        if (currentTask !== null && currentTask !== index) return;
+
+        window.open(adLinks[index], '_blank');
+
+        currentTask = index;
+        timeLeft = TIMER_DURATION;
+        document.getElementById('statusAlert').style.display = 'none';
+
+        const btn = document.getElementById(`btn-${index}`);
+        btn.disabled = true;
+
+        clearInterval(timerInterval);
+        
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            btn.innerText = `${timeLeft}s`;
+            document.getElementById(`sub-${index}`).innerText = `অপেক্ষা করুন... ${timeLeft} সে.`;
+
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                completeTask(index);
+            }
+        }, 1000);
+    }
+
+    function completeTask(index) {
+        completedTasks[index] = true;
+        currentTask = null;
+
+        const box = document.getElementById(`box-${index}`);
+        box.classList.remove('active');
+        box.classList.add('completed');
+        
+        document.getElementById(`icon-${index}`).innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+        document.getElementById(`sub-${index}`).innerText = 'সম্পন্ন হয়েছে';
+        document.getElementById(`btn-${index}`).outerHTML = '<span class="completed-badge"><i class="fa-solid fa-circle-check"></i></span>';
+
+        const nextIndex = index + 1;
+        if (nextIndex < 5) {
+            const nextBox = document.getElementById(`box-${nextIndex}`);
+            nextBox.classList.remove('locked');
+            nextBox.classList.add('active');
+            
+            document.getElementById(`icon-${nextIndex}`).innerHTML = '<i class="fa-solid fa-lock-open"></i>';
+            document.getElementById(`sub-${nextIndex}`).innerText = '১০ সেকেন্ড সময় দিন';
+            document.getElementById(`btn-${nextIndex}`).disabled = false;
+        } else if (nextIndex === 5) {
+            const tgBox = document.getElementById('box-5');
+            tgBox.classList.remove('locked');
+            tgBox.classList.add('unlocked');
+            
+            document.getElementById('sub-5').innerText = 'অ্যাক্সেস উন্মুক্ত হয়েছে!';
+            document.getElementById('btn-5-dummy').style.display = 'none';
+            document.getElementById('btn-5').style.display = 'inline-flex';
+        }
+    }
+
+    function resetCurrentTimer() {
+        if (currentTask !== null && !completedTasks[currentTask]) {
+            clearInterval(timerInterval);
+            timeLeft = TIMER_DURATION;
+            
+            const btn = document.getElementById(`btn-${currentTask}`);
+            btn.innerText = "পুনরায় চেষ্টা";
+            btn.disabled = false;
+
+            document.getElementById(`sub-${currentTask}`).innerText = 'টাইমার রিসেট হয়েছে';
+            document.getElementById('statusAlert').style.display = 'block';
+
+            currentTask = null;
+        }
+    }
+
+    document.addEventListener("visibilitychange", function() {
+        if (document.hidden) {
+            resetCurrentTimer();
+        }
+    });
+
+    window.addEventListener("blur", function() {
+        resetCurrentTimer();
+    });
+</script>
+
+</body>
+</html>
