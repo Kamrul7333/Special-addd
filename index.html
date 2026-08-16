@@ -231,7 +231,7 @@
 
 <div class="container">
     <div class="header">
-        <h1><i class="fa-solid fa-crown" style="color: #ff2a85;"></i> প্রিমিয়াম চ্যানেল ফ্রিতে পেতে পাঁচটি এড সম্পন্ন করুন</h1>
+        <h1><i class="fa-solid fa-crown" style="color: #ff2a85;"></i> প্রিমিয়াম চ্যানেল ফ্রিতে পেতে তিনটি এড সম্পন্ন করুন</h1>
         <p>প্রতিটি বক্সে ১০ সেকেন্ড অ্যাড সম্পূর্ণ দেখলে পরবর্তী বক্স খুলবে।</p>
     </div>
 
@@ -276,43 +276,19 @@
             <button class="btn-action" id="btn-2" onclick="startTask(2)" disabled>দেখুন</button>
         </div>
 
-        <!-- Step 4 -->
-        <div class="box-item locked" id="box-3">
+        <!-- Final Step: Special Telegram Video Channel -->
+        <div class="box-item telegram-box locked" id="box-3">
             <div class="box-info">
-                <div class="box-icon" id="icon-3"><i class="fa-solid fa-lock"></i></div>
-                <div class="box-text">
-                    <h3>ধাপ ৪</h3>
-                    <p id="sub-3">লক করা আছে</p>
-                </div>
-            </div>
-            <button class="btn-action" id="btn-3" onclick="startTask(3)" disabled>দেখুন</button>
-        </div>
-
-        <!-- Step 5 -->
-        <div class="box-item locked" id="box-4">
-            <div class="box-info">
-                <div class="box-icon" id="icon-4"><i class="fa-solid fa-lock"></i></div>
-                <div class="box-text">
-                    <h3>ধাপ ৫</h3>
-                    <p id="sub-4">লক করা আছে</p>
-                </div>
-            </div>
-            <button class="btn-action" id="btn-4" onclick="startTask(4)" disabled>দেখুন</button>
-        </div>
-
-        <!-- Final Step 6: Special Telegram Video Channel -->
-        <div class="box-item telegram-box locked" id="box-5">
-            <div class="box-info">
-                <div class="box-icon" id="icon-5"><i class="fa-brands fa-telegram"></i></div>
+                <div class="box-icon" id="icon-3"><i class="fa-brands fa-telegram"></i></div>
                 <div class="box-text">
                     <h3>স্পেশাল টেলিগ্রাম ভিডিও চ্যানেল</h3>
-                    <p id="sub-5">উপরের ৫টি ধাপ সম্পন্ন করুন</p>
+                    <p id="sub-3">উপরের ৩টি ধাপ সম্পন্ন করুন</p>
                 </div>
             </div>
-            <a href="https://t.me/+Rt3q6Wr9NkVmZGY6" target="_blank" class="btn-action btn-telegram" id="btn-5" style="display:none;">
+            <a href="https://t.me/+Rt3q6Wr9NkVmZGY6" target="_blank" class="btn-action btn-telegram" id="btn-3" style="display:none;">
                 Join Chat
             </a>
-            <button class="btn-action" id="btn-5-dummy" disabled>লক</button>
+            <button class="btn-action" id="btn-3-dummy" disabled>লক</button>
         </div>
     </div>
 
@@ -323,20 +299,18 @@
 </div>
 
 <script>
-    // Configured Ad Links
+    // Configured Ad Links (Only 3 Ads)
     const adLinks = [
         "https://omg10.com/4/11144021",
         "https://omg10.com/4/11570596",
-        "https://omg10.com/4/11570592",
-        "https://omg10.com/4/11144021",
-        "https://omg10.com/4/11570596"
+        "https://omg10.com/4/11570592"
     ];
 
     const TIMER_DURATION = 10;
     let currentTask = null;
     let timerInterval = null;
     let timeLeft = TIMER_DURATION;
-    let completedTasks = [false, false, false, false, false];
+    let completedTasks = [false, false, false];
 
     function startTask(index) {
         if (currentTask !== null && currentTask !== index) return;
@@ -377,7 +351,7 @@
         document.getElementById(`btn-${index}`).outerHTML = '<span class="completed-badge"><i class="fa-solid fa-circle-check"></i></span>';
 
         const nextIndex = index + 1;
-        if (nextIndex < 5) {
+        if (nextIndex < 3) {
             const nextBox = document.getElementById(`box-${nextIndex}`);
             nextBox.classList.remove('locked');
             nextBox.classList.add('active');
@@ -385,14 +359,14 @@
             document.getElementById(`icon-${nextIndex}`).innerHTML = '<i class="fa-solid fa-lock-open"></i>';
             document.getElementById(`sub-${nextIndex}`).innerText = '১০ সেকেন্ড সময় দিন';
             document.getElementById(`btn-${nextIndex}`).disabled = false;
-        } else if (nextIndex === 5) {
-            const tgBox = document.getElementById('box-5');
+        } else if (nextIndex === 3) {
+            const tgBox = document.getElementById('box-3');
             tgBox.classList.remove('locked');
             tgBox.classList.add('unlocked');
             
-            document.getElementById('sub-5').innerText = 'অ্যাক্সেস উন্মুক্ত হয়েছে!';
-            document.getElementById('btn-5-dummy').style.display = 'none';
-            document.getElementById('btn-5').style.display = 'inline-flex';
+            document.getElementById('sub-3').innerText = 'অ্যাক্সেস উন্মুক্ত হয়েছে!';
+            document.getElementById('btn-3-dummy').style.display = 'none';
+            document.getElementById('btn-3').style.display = 'inline-flex';
         }
     }
 
